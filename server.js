@@ -5,14 +5,13 @@ import data from './MOCK_DATA.json' assert { type: "json" };
 import DataScraper from '../backend_validate_ai/components/scrape.js'
 
 
-let url="https://www.news18.com/cricket/essex-handed-12-point-deduction-over-bat-controversy-dashing-hopes-of-title-run-9047933.html";
+let url="https://www.washingtonpost.com/world/2024/09/11/israel-gaza-west-bank-biden-aysenur-eygi/";
 const app=express();
 const users = data;
 // Parse JSON requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const output = await DataScraper(url);
-console.log(output.pTagsText);
+
 
 app.get('/', (req,res)=>{
     return res.send("hello from express server")
@@ -30,6 +29,20 @@ app.get("/api/users/:id",(req,res)=>{
     const id= Number(req.params.id);
     const user=users.find((user)=> user.id===id);
     return res.json(user);
+    
+})
+app.get("/api/web",async(req,res)=>{
+    try{
+        const query=req.query.query;
+        console.log(query);
+        const output = await DataScraper(query);
+        return res.status(200).json(output);
+    }
+    catch(e){
+        console.log(e);
+        return res.status(500).json({error:"Internal Server Error"})
+    }
+    
     
 })
 // Error handling middleware
