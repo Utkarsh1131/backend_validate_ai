@@ -1,15 +1,19 @@
-const express=require("express");
-const bodyParser = require('body-parser');
-const fs=require("fs")
+import express from 'express';
+import bodyParser from 'body-parser';
+import * as fs from 'node:fs';
+import data from './MOCK_DATA.json' assert { type: "json" };
+import DataScraper from '../backend_validate_ai/components/scrape.js'
 
+
+let url="https://www.news18.com/cricket/essex-handed-12-point-deduction-over-bat-controversy-dashing-hopes-of-title-run-9047933.html";
 const app=express();
-
+const users = data;
 // Parse JSON requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+const output = await DataScraper(url);
+console.log(output.pTagsText);
 
-
-const users=require("./MOCK_DATA.json")
 app.get('/', (req,res)=>{
     return res.send("hello from express server")
 })
