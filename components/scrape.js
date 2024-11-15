@@ -8,11 +8,9 @@ import {load} from 'cheerio';
         // optional params = ...
       });
   const docs = await loader.scrape();
-  
   const $ = load(JSON.stringify(docs));
   const h1Text = $('h1').text(); // Extracts text between <h1> tags
   const pTagsText = $('p').map((i, el) => $(el).text()).get(); // Extracts text from all <p> tags
-  
   return {h1Text,pTagsText}
   }
   

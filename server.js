@@ -31,21 +31,20 @@ app.get("/api/users/:id",(req,res)=>{
     return res.json(user);
     
 })
-app.get("/api/web",async(req,res)=>{
-    try{
-        const query=req.query.query;
-        console.log(query);
-        const output = await DataScraper(query);
-        return res.status(200).json(output);
+app.get("/api/web", async (req, res) => {
+    try {
+      const query = req.body.links;
+  
+      const results = await Promise.all(query.map(async (url) => await DataScraper(url)));
+  
+      return res.status(200).json(results);
+    } catch (e) {
+      console.log(e);
+      return res.status(500).json({ error: "Internal Server Error" });
     }
-    catch(e){
-        console.log(e);
-        return res.status(500).json({error:"Internal Server Error"})
-    }
-    
-    
-})
-// Error handling middleware
+  });
+
+  
 app.use((err, req, res, next) => {
     console.error(err);
     res.status(500).json({ error: 'Internal Server Error' });
