@@ -3,7 +3,12 @@ import {load} from 'cheerio';
 
 
   export default async function DataScraper(url){
-    const loader = new PuppeteerWebBaseLoader(url, {
+    const articletitle = url.title;
+    const articlesnippet = url.snippet;
+    const articledate = url.date;
+    const articlesource = url.source;
+    const articleimage = url.imageUrl;
+    const loader = new PuppeteerWebBaseLoader(url.link, {
         // required params = ...
         // optional params = ...
       });
@@ -11,6 +16,6 @@ import {load} from 'cheerio';
   const $ = load(JSON.stringify(docs));
   const h1Text = $('h1').text(); // Extracts text between <h1> tags
   const pTagsText = $('p').map((i, el) => $(el).text()).get(); // Extracts text from all <p> tags
-  return {h1Text,pTagsText}
+  return {h1Text,pTagsText,articletitle,articlesnippet,articledate,articlesource,articleimage}
   }
   

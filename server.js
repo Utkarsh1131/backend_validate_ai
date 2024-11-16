@@ -5,11 +5,15 @@ import data from './MOCK_DATA.json' assert { type: "json" };
 import axios from 'axios';
 import DataScraper from '../backend_validate_ai/components/scrape.js'
 import https from 'follow-redirects/https.js';
-const dotenv = require('dotenv');
-dotenv.config();
+import dotenv from 'dotenv';
+dotenv.config({
+  'path':'.env'
+});
+
+
 
 async function makeRequest(query) {
-  const key=process.env.API_KEY;
+  let key=process.env.API_KEY || 'a01a6141885abad8fed9e6c6b0d1528b647fec72';
   let config = {
       method: 'get',
       maxBodyLength: Infinity,
@@ -28,7 +32,6 @@ async function makeRequest(query) {
   }
   
 
-let url="https://www.washingtonpost.com/world/2024/09/11/israel-gaza-west-bank-biden-aysenur-eygi/";
 const app=express();
 const users = data;
 // Parse JSON requests
@@ -60,14 +63,15 @@ app.get("/api/web", async (req, res) => {
       const query = req.query.query;
       const transformedText = query.split(" ").join("+");
       const axiosResult= await makeRequest(transformedText);
+      // APIManager(axiosResult);
       // if (!axiosResult || !Array.isArray(axiosResult)) {
       //   return res.status(500).json({ error: "Invalid response from makeRequest" });
       // }
 
-      // console.log(axiosResult);
-      // const results = await Promise.all(axiosResult.map(async (datatx) => await DataScraper(datatx.link)));
+      let arrayincoming = JSON.parse(axiosResult);
+      const results = await Promise.all(arrayincoming.slice(0,3).map(async (datatx) => await DataScraper(datatx)));
   
-      return res.status(200).json(axiosResult);
+      return res.status(200).json(results);
 
     } catch (e) {
       console.log(e);
