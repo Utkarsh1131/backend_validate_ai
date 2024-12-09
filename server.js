@@ -1,9 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import * as fs from 'node:fs';
-import data from './MOCK_DATA.json' assert { type: "json" };
+
 import axios from 'axios';
-import DataScraper from '../backend_validate_ai/components/scrape.js';
+import DataScraper from './components/scrape.js';
 import PromptNew from './components/model.js';
 import https from 'follow-redirects/https.js';
 import dotenv from 'dotenv';
@@ -49,15 +49,15 @@ app.get('/about', (req,res)=>{
 app.get('/hey', (req,res)=>{
     return res.end("hey " +req.query.name +"   from express server")
 })
-app.get("/api/users",(req,res)=>{
-    return res.json(users);
-})
-app.get("/api/users/:id",(req,res)=>{
-    const id= Number(req.params.id);
-    const user=users.find((user)=> user.id===id);
-    return res.json(user);
+// app.get("/api/users",(req,res)=>{
+//     return res.json(users);
+// })
+// app.get("/api/users/:id",(req,res)=>{
+//     const id= Number(req.params.id);
+//     const user=users.find((user)=> user.id===id);
+//     return res.json(user);
     
-})
+// })
 
 app.get("/api/web", async (req, res) => {
     try {
