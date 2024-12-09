@@ -1,9 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import * as fs from 'node:fs';
-import data from './MOCK_DATA.json' assert { type: "json" };
+
 import axios from 'axios';
-import DataScraper from '../backend_validate_ai/components/scrape.js';
+import DataScraper from './components/scrape.js';
 import PromptNew from './components/model.js';
 import https from 'follow-redirects/https.js';
 import dotenv from 'dotenv';
@@ -39,6 +39,7 @@ const users = data;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.get('/', (req,res)=>{
     return res.send("hello from express server")
