@@ -39,7 +39,6 @@ const users = data;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.get('/', (req,res)=>{
     return res.send("hello from express server")
@@ -50,15 +49,15 @@ app.get('/about', (req,res)=>{
 app.get('/hey', (req,res)=>{
     return res.end("hey " +req.query.name +"   from express server")
 })
-app.get("/api/users",(req,res)=>{
-    return res.json(users);
-})
-app.get("/api/users/:id",(req,res)=>{
-    const id= Number(req.params.id);
-    const user=users.find((user)=> user.id===id);
-    return res.json(user);
+// app.get("/api/users",(req,res)=>{
+//     return res.json(users);
+// })
+// app.get("/api/users/:id",(req,res)=>{
+//     const id= Number(req.params.id);
+//     const user=users.find((user)=> user.id===id);
+//     return res.json(user);
     
-})
+// })
 
 app.get("/api/web", async (req, res) => {
     try {
