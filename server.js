@@ -3,7 +3,8 @@ import bodyParser from 'body-parser';
 import * as fs from 'node:fs';
 import data from './MOCK_DATA.json' assert { type: "json" };
 import axios from 'axios';
-import DataScraper from '../backend_validate_ai/components/scrape.js'
+import DataScraper from '../backend_validate_ai/components/scrape.js';
+import PromptNew from './components/model.js';
 import https from 'follow-redirects/https.js';
 import dotenv from 'dotenv';
 dotenv.config({
@@ -57,6 +58,7 @@ app.get("/api/users/:id",(req,res)=>{
     return res.json(user);
     
 })
+
 app.get("/api/web", async (req, res) => {
     try {
         

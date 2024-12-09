@@ -14,6 +14,7 @@
     "@huggingface/agents": "^0.0.5",
     "@huggingface/hub": "^0.15.1",
     "@huggingface/inference": "^2.8.0",
+    "@huggingface/transformers": "^3.1.2",
     "@langchain/community": "^0.2.31",
     "@langchain/mistralai": "^0.0.29",
     "axios": "^1.7.7",
@@ -23,7 +24,11 @@
     "langchain": "^0.2.17",
     "nodemon": "^3.1.4",
     "puppeteer": "^23.2.1",
+    "sharp": "^0.33.5",
     "url": "^0.11.4",
     "vanilla": "^0.0.5"
+  },
+  "devDependencies": {
+    "@gradio/client": "^1.8.0"
   }
 }
