@@ -1,6 +1,7 @@
 import { PuppeteerWebBaseLoader } from "@langchain/community/document_loaders/web/puppeteer";
 import {load} from 'cheerio';
 import PromptNew from "./model.js";
+import puppeteer from "puppeteer";
 
 export default async function DataScraper(url){
     (async () => {
