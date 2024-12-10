@@ -1,12 +1,10 @@
-import { PuppeteerWebBaseLoader } from "@langchain/community/document_loaders/web/puppeteer";
-import {load} from 'cheerio';
+// import { PuppeteerWebBaseLoader } from "@langchain/community/document_loaders/web/puppeteer";
+// import {load} from 'cheerio';
 import PromptNew from "./model.js";
-import puppeteer from "puppeteer";
+// import puppeteer from "puppeteer";
 
 export default async function DataScraper(url){
-    (async () => {
-        console.log('Chrome executable path:', puppeteer.executablePath());
-    })();
+  
     const articletitle = url.title;
     const articlesnippet = url.snippet;
     const articledate = url.date;
