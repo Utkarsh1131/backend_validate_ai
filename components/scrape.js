@@ -9,8 +9,9 @@ export default async function DataScraper(url){
     const articlesource = url.source;
     const articleimage = url.imageUrl;
     const loader = new PuppeteerWebBaseLoader(url.link, {
-        // required params = ...
-        // optional params = ...
+        launchOptions: {
+            executablePath: '/opt/render/.cache/puppeteer/chrome-linux/chrome', // Adjust to your system
+        },
       });
   const docs = await loader.scrape();
   const $ = load(JSON.stringify(docs));
