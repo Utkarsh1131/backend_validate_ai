@@ -1,8 +1,12 @@
 import { PuppeteerWebBaseLoader } from "@langchain/community/document_loaders/web/puppeteer";
 import {load} from 'cheerio';
 import PromptNew from "./model.js";
+import puppeteer from "puppeteer";
 
 export default async function DataScraper(url){
+    (async () => {
+        console.log('Chrome executable path:', puppeteer.executablePath());
+    })();
     const articletitle = url.title;
     const articlesnippet = url.snippet;
     const articledate = url.date;
@@ -10,7 +14,7 @@ export default async function DataScraper(url){
     const articleimage = url.imageUrl;
     const loader = new PuppeteerWebBaseLoader(url.link, {
         launchOptions: {
-            executablePath: '/opt/render/.cache/puppeteer/chrome-linux/chrome', // Adjust to your system
+            executablePath: puppeteer.executablePath(), // Adjust to your system
         },
       });
   const docs = await loader.scrape();
