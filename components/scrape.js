@@ -15,6 +15,7 @@ export default async function DataScraper(url){
     const loader = new PuppeteerWebBaseLoader(url.link, {
         launchOptions: {
             executablePath: puppeteer.executablePath(), // Adjust to your system
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
         },
       });
   const docs = await loader.scrape();
