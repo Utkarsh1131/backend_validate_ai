@@ -34,7 +34,7 @@ async function makeRequest(query) {
   
 
 const app=express();
-const users = data;
+
 // Parse JSON requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
