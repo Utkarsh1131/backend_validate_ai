@@ -10,6 +10,7 @@ export default async function DataScraper(url){
     const articlesnippet = url.snippet;
     const articledate = url.date;
     const articlesource = url.source;
+    const articlelink = url.link;
     const articleimage = url.imageUrl || imagefallbackurl;
 //     const loader = new PuppeteerWebBaseLoader(url.link, {
 //         launchOptions: {
@@ -27,7 +28,7 @@ export default async function DataScraper(url){
     const h1Text = $('h1').text(); // Extracts text between <h1> tags
     const pTagsText = $('p').map((i, el) => $(el).text()).get(); // Extracts text from all <p> tags
     const summarised = await PromptNew('Summarise this in 30 words and dont add any remarks of yours or anything:'+pTagsText);
-    return {h1Text,summarised,articletitle,articlesnippet,articledate,articlesource,articleimage}
+    return {h1Text,summarised,articletitle,articlesnippet,articlelink,articledate,articlesource,articleimage}
 
  
   }
