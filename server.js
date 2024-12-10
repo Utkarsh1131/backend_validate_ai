@@ -87,4 +87,4 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: 'Internal Server Error' });
   });
 
-app.listen(8000,()=>console.log("server started!!!!!"))
+app.listen(3000,()=>console.log("server started!!!!!"))
