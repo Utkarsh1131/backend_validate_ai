@@ -1,12 +1,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import * as fs from 'node:fs';
-
+import cors from 'cors';
 import axios from 'axios';
 import DataScraper from './components/scrape.js';
 import PromptNew from './components/model.js';
 import https from 'follow-redirects/https.js';
 import dotenv from 'dotenv';
+import { METHODS } from 'node:http';
 dotenv.config({
   'path':'.env'
 });
@@ -38,7 +39,12 @@ const app=express();
 // Parse JSON requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+const corsoptions = {
+  origin:'*',
+  methods:['GET','POST'],
+  allowedHeaders:['Content-Type', 'Authorization']
+}
+app.use(cors(corsoptions));
 
 app.get('/', (req,res)=>{
     return res.send("hello from express server")
@@ -58,6 +64,7 @@ app.get('/hey', (req,res)=>{
 //     return res.json(user);
     
 // })
+
 
 app.get("/api/web", async (req, res) => {
     try {
