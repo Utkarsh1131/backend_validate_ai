@@ -84,7 +84,7 @@ app.get("/api/web", async (req, res) => {
         return res.status(200).json(results);
       }
       else{
-        results = await PromptNew('Give me a JSON output with summary of 20 words of category of topic discussed,use only summary and category as keys in json ,summarise this in 30 words and dont add any remarks of yours or anything.Also complete the json anyhow:'+query);
+        results = await PromptNew('Give me a summary in 30 words and dont add any remarks of yours or anything:'+query);
         return res.status(200).json(results);
       }
   

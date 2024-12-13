@@ -28,7 +28,7 @@ export default async function DataScraper(url){
     const $ = load(data);
     const h1Text = $('h1').text(); // Extracts text between <h1> tags
     const pTagsText = $('p').map((i, el) => $(el).text()).get(); // Extracts text from all <p> tags
-    const summarised = await PromptNew('Give me a JSON output with summary of category of topic discussed,use only summary and category as keys in json ,summarise this in 30 words and dont add any remarks of yours or anything:'+pTagsText);
+    const summarised = await PromptNew('Summarise this in 30 words and dont add any remarks of yours or anything:'+pTagsText);
     return {h1Text,summarised,articletitle,articlesnippet,articlelink,articledate,articlesource,articleimage}
 
  
