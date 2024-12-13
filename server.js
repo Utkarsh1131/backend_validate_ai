@@ -76,11 +76,18 @@ app.get("/api/web", async (req, res) => {
       // if (!axiosResult || !Array.isArray(axiosResult)) {
       //   return res.status(500).json({ error: "Invalid response from makeRequest" });
       // }
+      var results= null;
+      if (axiosResult.length>2){
 
-      let arrayincoming = JSON.parse(axiosResult);
-      const results = await Promise.all(arrayincoming.slice(0,3).map(async (datatx) => await DataScraper(datatx)));
+        let arrayincoming = JSON.parse(axiosResult);
+        results = await Promise.all(arrayincoming.slice(0,3).map(async (datatx) => await DataScraper(datatx)));
+        return res.status(200).json(results);
+      }
+      else{
+        results = await PromptNew('Give me a JSON output with summary of category of topic discussed,use only summary and category as keys in json ,summarise this in 30 words and dont add any remarks of yours or anything:'+query);
+        return res.status(200).json(results);
+      }
   
-      return res.status(200).json(results);
 
     } catch (e) {
       console.log(e);
