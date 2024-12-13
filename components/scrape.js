@@ -5,6 +5,7 @@ import axios from "axios";
 // import puppeteer from "puppeteer";
 
 export default async function DataScraper(url){
+
     const imagefallbackurl='https://media.istockphoto.com/id/1409309637/vector/breaking-news-label-banner-isolated-vector-design.jpg?s=612x612&w=0&k=20&c=JoQHezk8t4hw8xXR1_DtTeWELoUzroAevPHo0Lth2Ow='
     const articletitle = url.title;
     const articlesnippet = url.snippet;
@@ -30,6 +31,7 @@ export default async function DataScraper(url){
     const summarised = await PromptNew('Give me a JSON output with summary of category of topic discussed,use only summary and category as keys in json ,summarise this in 30 words and dont add any remarks of yours or anything:'+pTagsText);
     return {h1Text,summarised,articletitle,articlesnippet,articlelink,articledate,articlesource,articleimage}
 
+ 
  
   }
   
